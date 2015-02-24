@@ -1,4 +1,7 @@
-Current SVN trunk
+Version 1.6.1 (2015 / 02)
+* task: make ke_troubletickets compatible with TYPO3 6.2
+
+Version 1.6 (2013 / 11)
 * feature: ToDo-Lists. Each ticket can have a list single items in a ToDo-List. AJAX-based. Can be marked as "done".
 * feature: progress bar. Calculates the progress of a ticket depending of the ToDo-List items which are mared as "done".
 * task: move ChangeLog from documentation to ChangeLog text file

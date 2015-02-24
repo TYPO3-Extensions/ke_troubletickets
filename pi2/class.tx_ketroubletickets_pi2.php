@@ -27,7 +27,9 @@
  * @author	Christian Bülter <buelter@kennziffer.com>
  */
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
+if (TYPO3_VERSION_INTEGER < 6002000) {
+	require_once(PATH_tslib.'class.tslib_pibase.php');
+}
 require_once(t3lib_extMgm::extPath('ke_troubletickets').'lib/class.tx_ketroubletickets_lib.php');
 
 /**

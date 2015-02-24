@@ -27,9 +27,6 @@
  * @author	Christian Bülter <buelter@kennziffer.com>
  */
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
-require_once(t3lib_extMgm::extPath('ke_troubletickets').'lib/class.tx_ketroubletickets_lib.php');
-
 	// Constants
 define('CONST_NEWTICKET', 'NEWTICKET');
 define('CONST_NEWCOMMENT', 'NEWCOMMENT');
@@ -53,24 +50,25 @@ define('CONST_KEEP_TAGS_YES', 'keeptags');
 define('CONST_RENDER_ALL_INTERNAL_FIELDS', 'render_all_internal_fields');
 define('NOT_FULLY_CHARGED_FILTER', 'not_fully_charged');
 
-	// RTE
+if (TYPO3_VERSION_INTEGER < 6002000) {
+	require_once(PATH_tslib.'class.tslib_pibase.php');
+	require_once(PATH_t3lib.'class.t3lib_basicfilefunc.php');
+}
+
+// include lib class
+require_once(t3lib_extMgm::extPath('ke_troubletickets').'lib/class.tx_ketroubletickets_lib.php');
+
+// RTE
 require_once(t3lib_extMgm::extPath('rtehtmlarea').'pi2/class.tx_rtehtmlarea_pi2.php');
 
-	// Basic file func, needed for checking filenames when uploading files
-require_once(PATH_t3lib.'class.t3lib_basicfilefunc.php');
-
-if (class_exists(VersionNumberUtility)) {
-    $numeric_typo3_version = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version);
-} else if (class_exists('t3lib_utility_VersionNumber')) {
-    $numeric_typo3_version = t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version);
+// mail functions
+if (TYPO3_VERSION_INTEGER >= 4005000) {
+	if (TYPO3_VERSION_INTEGER < 6002000) {
+		require_once(PATH_t3lib.'mail/class.t3lib_mail_message.php');
+	}
 } else {
-    $numeric_typo3_version = t3lib_div::int_from_ver(TYPO3_version);
-}
-	// Mail functions
-if ($numeric_typo3_version >= 4005000)
-	require_once(PATH_t3lib.'mail/class.t3lib_mail_message.php');
-else
 	require_once(PATH_t3lib.'class.t3lib_htmlmail.php');
+}
 
 /**
  * Plugin 'Trouble Ticket System' for the 'ke_troubletickets' extension.
@@ -4182,7 +4180,7 @@ class tx_ketroubletickets_pi1 extends tslib_pibase {
 
 				// crop title
 				$title = $this->internal['currentRow']['title'];
-				$length = intval($this->listViewConf['cropTitle']);
+				$length = isset($this->listViewConf['cropTitle']) ? intval($this->listViewConf['cropTitle']) : 300;
 				if ( $length && strlen($title) > $length) {
 					$title = $this->cObj->crop($title, $length . '| ...|1');
 				}

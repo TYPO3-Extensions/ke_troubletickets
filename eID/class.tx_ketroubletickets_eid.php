@@ -12,7 +12,9 @@
  * 
  */
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
+if (TYPO3_VERSION_INTEGER < 6002000) {
+	require_once(PATH_tslib.'class.tslib_pibase.php');
+}
 
 class tx_ketroubletickets_eid extends tslib_pibase {
   
