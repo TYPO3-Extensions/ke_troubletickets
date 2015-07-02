@@ -27,17 +27,10 @@
 unset($MCONF);
 require_once('conf.php');
 require_once($BACK_PATH.'init.php');
-if (TYPO3_VERSION_INTEGER < 6002000) {
-	require_once($BACK_PATH.'template.php');
-}
-
 require_once('../lib/class.tx_ketroubletickets_lib.php');
 require_once('backendmenu.class.php');
 
 $LANG->includeLLFile('EXT:ke_troubletickets/mod1/locallang.xml');
-if (TYPO3_VERSION_INTEGER < 6002000) {
-	require_once(PATH_t3lib.'class.t3lib_scbase.php');
-}
 $BE_USER->modAccess($MCONF,1);    // This checks permissions and exits if the users has no permission for entry.
     // DEFAULT initialization of a module [END]
 

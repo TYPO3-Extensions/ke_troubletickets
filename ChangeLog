@@ -1,4 +1,6 @@
-Version 1.6.2 CURRENT TRUNK
+Version 1.6.2
+* bugfix: fix compatibility with 6.2
+* task: remove support for TYPO3 versions below 6.2
 
 Version 1.6.1 (2015 / 02)
 * task: make ke_troubletickets compatible with TYPO3 6.2

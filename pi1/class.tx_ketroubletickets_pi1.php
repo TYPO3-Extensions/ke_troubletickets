@@ -50,25 +50,11 @@ define('CONST_KEEP_TAGS_YES', 'keeptags');
 define('CONST_RENDER_ALL_INTERNAL_FIELDS', 'render_all_internal_fields');
 define('NOT_FULLY_CHARGED_FILTER', 'not_fully_charged');
 
-if (TYPO3_VERSION_INTEGER < 6002000) {
-	require_once(PATH_tslib.'class.tslib_pibase.php');
-	require_once(PATH_t3lib.'class.t3lib_basicfilefunc.php');
-}
-
 // include lib class
 require_once(t3lib_extMgm::extPath('ke_troubletickets').'lib/class.tx_ketroubletickets_lib.php');
 
 // RTE
 require_once(t3lib_extMgm::extPath('rtehtmlarea').'pi2/class.tx_rtehtmlarea_pi2.php');
-
-// mail functions
-if (TYPO3_VERSION_INTEGER >= 4005000) {
-	if (TYPO3_VERSION_INTEGER < 6002000) {
-		require_once(PATH_t3lib.'mail/class.t3lib_mail_message.php');
-	}
-} else {
-	require_once(PATH_t3lib.'class.t3lib_htmlmail.php');
-}
 
 /**
  * Plugin 'Trouble Ticket System' for the 'ke_troubletickets' extension.
