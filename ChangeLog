@@ -1,3 +1,5 @@
+Version 1.6.3 CURRENT TRUNK
+
 Version 1.6.2
 * bugfix: fix compatibility with 6.2
 * task: remove support for TYPO3 versions below 6.2
